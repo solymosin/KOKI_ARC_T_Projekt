@@ -260,5 +260,344 @@ addStyle(wb, 1, style=cs, rows=-1, cols=-1)
 saveWorkbook(wb, 'Data_annotation_GRCm39_104.xlsx', overwrite = TRUE)
 
 
-   
-   
+#####################################################################
+# Az első hatcsoportos DE elemzésben minden elem legyen benne.
+
+meta = data.frame(smpl=colnames(readcounts))
+meta$grp = c(
+'testosteron','dht','e2',
+'dht','dht','dht',
+'e2','e2','e2',
+'ko','ko','ko','ko',
+'testosteron','testosteron','testosteron',
+'ukapszula','ukapszula','ukapszula','ukapszula',
+'intakt','intakt','intakt','intakt')
+
+grps = sort(unique(meta$grp))
+
+a=grps[1]; b=grps[2]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(bres, res)
+
+a=grps[1]; b=grps[3]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[4]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[5]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[6]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[3]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[4]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[5]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[6]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[3]; b=grps[4]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[3]; b=grps[5]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[3]; b=grps[6]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[4]; b=grps[5]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[4]; b=grps[6]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[5]; b=grps[6]
+sel = meta %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+cs = createStyle(wrapText=T)
+wb = createWorkbook() 
+addWorksheet(wb, 'DE')
+writeData(wb, 1, vres)  
+addStyle(wb, 1, style=cs, rows=-1, cols=-1)
+saveWorkbook(wb, 'DE_GRCm39_104_01.xlsx', overwrite = TRUE)
+
+
+#####################################################################
+# A második hatcsoportos DE elemzésből legyen kivéve az alábbi táblázatban pirossal jelölt két minta (27E2_S13 és 25T_S1). 
+
+metab = meta[which(meta$smpl!='27E2_S13' & meta$smpl!='25T_S1'),]
+
+a=grps[1]; b=grps[2]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(bres, res)
+
+a=grps[1]; b=grps[3]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[4]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[5]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[1]; b=grps[6]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[3]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[4]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[5]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[2]; b=grps[6]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[3]; b=grps[4]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[3]; b=grps[5]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[3]; b=grps[6]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[4]; b=grps[5]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+a=grps[4]; b=grps[6]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+
+a=grps[5]; b=grps[6]
+sel = metab %>% filter(grp==a | grp==b)
+sel$grp = relevel(factor(sel$grp), a)
+dds = DESeqDataSetFromMatrix(countData=readcounts[,sel$smpl], colData=sel, design=~grp)                             
+dds = DESeq(dds)
+res = as.data.frame(results(dds)) 
+colnames(res) = paste0(a,'v',b,'_',colnames(res))
+res = res %>% mutate(ens=rownames(.)) %>% as_tibble() %>% select(7, 2, 5,6)
+vres = left_join(vres, res)
+
+cs = createStyle(wrapText=T)
+wb = createWorkbook() 
+addWorksheet(wb, 'DE')
+writeData(wb, 1, vres)  
+addStyle(wb, 1, style=cs, rows=-1, cols=-1)
+saveWorkbook(wb, 'DE_GRCm39_104_02.xlsx', overwrite = TRUE)
+
